@@ -6,12 +6,19 @@
     <title>Meta Refresh Test</title>
     <script>
         let refreshCount = localStorage.getItem('refreshCount') || 0;
-        if (refreshCount < 3) {
+        let lastRefresh = localStorage.getItem('lastRefresh') || 0;
+        let now = Date.now();
+        let cooldown = 10000; // 5 seconds cooldown
+
+        if (refreshCount < 3 && now - lastRefresh > cooldown) {
             localStorage.setItem('refreshCount', ++refreshCount);
-            window.location.href = 'https://test3-self-ten.vercel.app/';
+            localStorage.setItem('lastRefresh', now);
+            setTimeout(() => {
+                window.location.href = 'https://test3-self-ten.vercel.app/';
+            }, 3000); // 1 second delay before redirect
         } else {
             localStorage.removeItem('refreshCount');
-            window.location.href = 'https://test3-self-ten.vercel.app/';
+            localStorage.removeItem('lastRefresh');
         }
     </script>
 </head>
